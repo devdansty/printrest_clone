@@ -9,8 +9,8 @@ const user_schema = new schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  fullname :{ type :string , required:true}
   // Add other fields as needed, such as profile picture, bio, etc.
-
 })
 userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
@@ -28,5 +28,4 @@ userSchema.methods.comparePassword = function(candidatePassword) {
 };
 
 userSchema.plugin(plm);
-
 module.exports = router;
