@@ -16,7 +16,7 @@
     margin: auto;
     top: 10%; /* Adjust top margin for centering */
     left: 0;
-    bottom: 0;
+    bottom: 10%;
     right: 0;
     border-radius: 10px;
     box-shadow: 2px 2px 3px -1px rgba(0, 0, 0, 0.5);
@@ -40,11 +40,11 @@
     top: 20px;
   }
   .header {
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 600;
     margin-top: 40px;
     margin-bottom: 10px;
-    line-height: 46px;
+    line-height: 12px;
   }
   .detail {
     width: 100%;
@@ -96,7 +96,7 @@
   .or {
     font-size: 15px;
     font-weight: 700;
-    margin: 10px 0px;
+    margin: 5px 0px;
   }
   
   .fbk {
@@ -133,6 +133,7 @@
     font-size: 12px;
     margin: 10px;
     opacity: 0.7;
+    line-height: 15px;
   }
   p:last-child {
     opacity: 1;

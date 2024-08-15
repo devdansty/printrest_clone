@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var expsession= require("express-session");
 var passport=require("passport")
 var app = express();
+var flash = require('connect-flash'); 
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +26,14 @@ app.use(passport.session());
 passport.serializeUser(usersRouter.serializeUser());
 passport.deserializeUser(usersRouter.deserializeUser());
 
+app.use(flash());
+
+// Middleware to make flash messages available in all views
+app.use((req, res, next) => {
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
+  next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());

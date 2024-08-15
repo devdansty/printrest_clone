@@ -15,11 +15,9 @@ router.get('/', function(req, res, next) {
   res.render("index");
 });
 
-router.get("/profile", IsLogedIn ,function (res, res,next ){
-  //islogedin,
-  res.send("Profile");
+router.get('/login', function(req, res, next) {
+  res.render("login");
 });
-
 
 router.post('/register', async function(req, res, next) {
   var user = await new usermodel({
@@ -27,24 +25,32 @@ router.post('/register', async function(req, res, next) {
     email: req.body.email ,
     fullname : req.body.fullname
   });
-usermodel.register(user, req.body.password)
-.then(function(){
-  passport.authenticate("local")(req,res,function(){
-    res.redirect ("/profile");
+  usermodel.register(user, req.body.password)
+  .then(function(){
+    passport.authenticate("local")(req,res,function(){
+      res.redirect ("/profile");
+    })
   })
-})
+});
+
+router.get("/profile", IsLogedIn ,function (res, res,next ){
+  res.send("Profile");
+
 });
 
 router.post('/login', passport.authenticate("local",{
-  successRedirect:"/profie",
-  failureRedirect:"/"
-}),async function(req, res, next) {
+  successRedirect:"/profile",
+  failureRedirect:"/",
+  failureFlash: true
+}),function(req, res, next) {
 
 });
 
 router.get("/logout",function(req,res,){
   req.logout(function(err) {
-    if (err) { return next(err); }
+    if (err) { 
+      return next(err); 
+    }
     res.redirect('/');
   });
 });
