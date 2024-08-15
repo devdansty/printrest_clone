@@ -11,6 +11,12 @@ passport.authenticate(new local_strategy(usermodel.authenticate()));
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
+
+router.get("/profile",islogedin,async function (res, res,next ){
+  res.render('index', { title: ' Profie ' });
+})
+
+
 router.post('/register', async function(req, res, next) {
   var user = await new usermodel({
     username: req.body.username,
@@ -23,7 +29,28 @@ usermodel.register(user, req.body.password)
     res.redirect ("/profile");
   })
 })
+});
+
+router.post('/login', passport.authenticate("local",{
+  successRedirect:"/profie",
+  failureRedirect:"/"
+}),async function(req, res, next) {
 
 });
+
+router.get("/logout",function(req,res,){
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
+
+function islogedin(req,res,next){
+  if(req.isAuthenticated())
+    return(next);
+  res.redirect("/");
+}
+
+
 
 module.exports = router;
