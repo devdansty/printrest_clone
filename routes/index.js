@@ -34,7 +34,7 @@ router.post('/register', async function(req, res, next) {
 });
 
 router.get("/profile", IsLogedIn ,function (res, res,next ){
-  res.send("Profile");
+ res.render("profile");
 
 });
 
@@ -45,6 +45,11 @@ router.post('/login', passport.authenticate("local",{
 }),function(req, res, next) {
 
 });
+
+router.get('/feed', function(req, res, next) {
+  res.render("feed");
+});
+
 
 router.get("/logout",function(req,res,){
   req.logout(function(err) {
