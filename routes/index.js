@@ -3,18 +3,22 @@ var router = express.Router();
 var usermodel =require("./users");
 const passport =require("passport");
 
+const mongoose=require("mongoose");
+mongoose.connect('mongodb://localhost:27017/printrest_userdata');
 
 const local_strategy = require("passport-local");
-passport.authenticate(new local_strategy(usermodel.authenticate()));
+
+passport.use(new local_strategy(usermodel.authenticate()));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render("index");
 });
 
-router.get("/profile",islogedin,async function (res, res,next ){
-  res.render('index', { title: ' Profie ' });
-})
+router.get("/profile", IsLogedIn ,function (res, res,next ){
+  //islogedin,
+  res.send("Profile");
+});
 
 
 router.post('/register', async function(req, res, next) {
@@ -45,9 +49,11 @@ router.get("/logout",function(req,res,){
   });
 });
 
-function islogedin(req,res,next){
-  if(req.isAuthenticated())
-    return(next);
+function IsLogedIn(req,res,next){
+  if(req.isAuthenticated()){ 
+    return next();
+  }
+  else
   res.redirect("/");
 }
 
