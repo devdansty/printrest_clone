@@ -15,20 +15,19 @@ var flash = require('connect-flash');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
 app.use(expsession({
   resave:false,
   saveUninitialized:false,
   secret:"holoholoh"
 }));
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(usersRouter.serializeUser());
 passport.deserializeUser(usersRouter.deserializeUser());
 
-app.use(flash());
-
-// Middleware to make flash messages available in all views
 app.use((req, res, next) => {
   res.locals.error = req.flash('error');
   res.locals.success = req.flash('success');

@@ -157,3 +157,10 @@
     background-color: #df0812;
     border-radius: 20px;
   }
+  .error-message{
+    font-weight: 550;
+    color: red;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    text-wrap:wrap;
+  }
