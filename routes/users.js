@@ -7,8 +7,11 @@ const schema=mongoose.Schema;
 const user_schema = new schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  fullname: { type: String, required: true, }
-})
+  fullname: { type: String, required: true },
+  dp: { type: String, default: '' },
+  posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
+
+});
 
 user_schema.plugin(plm);
 
