@@ -3,7 +3,7 @@
 body {
   height: calc(100vh - 50px);
   font-family: 'Nunito', sans-serif;
-  letter-spacing: .1px;
+  /* letter-spacing: .05px;  */
   background: #EEEFFF;
 }
 

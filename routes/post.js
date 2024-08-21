@@ -30,3 +30,4 @@ const postSchema = new Schema({
 // Create and export the Post model
 const Post = mongoose.model('Post', postSchema);
 module.exports = Post;
+module.exports = Post;//delete

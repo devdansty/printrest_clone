@@ -120,6 +120,14 @@ function IsLogedIn(req,res,next){
   res.redirect("/");
 }
 
+function IsLogedIn(req,res,next){ ////delete
+  if(req.isAuthenticated()){ 
+    return next();
+  }
+  else
+  res.redirect("/");
+}
+
 
 
 module.exports = router;
